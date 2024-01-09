@@ -1,0 +1,89 @@
+<form class="form" (ngSubmit)="submitForm()" [formGroup]="userForm">
+  <!-- Name -->
+  <div class="custom-input">
+    <label>
+      <span>Name</span>
+      <input type="text" formControlName="name" placeholder="Name">
+    </label>
+    <span class="error-message" [hidden]="name.valid || name.pristine">{{ Errors.RequiredField }}</span>
+  </div>
+  <!-- Surname -->
+  <div class="custom-input">
+    <label>
+      <span>Surname</span>
+      <input type="text" formControlName="surname" placeholder="Surname">
+    </label>
+    <span class="error-message" [hidden]="surname.valid || surname.pristine">{{ Errors.RequiredField }}</span>
+  </div>
+  <!-- email -->
+  <div class="custom-input">
+    <label>
+      <span>email</span>
+      <input type="email" formControlName="email" placeholder="your@email.com">
+    </label>
+    <span
+      class="error-message"
+      [hidden]="email.valid || email.pristine"
+      *ngIf="email.hasError('required')"
+    >
+      {{ Errors.RequiredField }}
+    </span>
+    <span
+      class="error-message"
+      [hidden]="email.valid || email.pristine"
+      *ngIf="email.hasError('pattern')"
+    >
+      {{ Errors.InvalidFormat }}
+    </span>
+  </div>
+  <!-- phone -->
+  <div class="custom-input">
+    <label>
+      <span>Telephone</span>
+      <input type="tel" formControlName="telephone" placeholder="12345678">
+    </label>
+    <span
+      class="error-message"
+      [hidden]="telephone.valid || telephone.pristine"
+      *ngIf="telephone.hasError('required')"
+    >
+      {{ Errors.RequiredField }}
+    </span>
+    <span
+      class="error-message"
+      [hidden]="telephone.valid || telephone.pristine"
+      *ngIf="telephone.hasError('pattern')"
+    >
+      {{ Errors.InvalidFormat }}
+    </span>
+  </div>
+  <!-- Textarea -->
+  <div class="custom-input">
+    <textarea formControlName="message" placeholder="Message"></textarea>
+    <p
+      class="error-message"
+      [hidden]="message.valid || message.pristine"
+      *ngIf="message.hasError('required')"
+    >
+      {{ Errors.RequiredField }}
+    </p>
+    <p
+      class="error-message"
+      [hidden]="message.valid || message.pristine"
+      *ngIf="message.hasError('maxlength')"
+    >
+      {{ Errors.MaxLength }}
+    </p>
+  </div>
+  <!-- Terms -->
+  <div class="custom-input">
+    <label class="checkbox">
+      <input type="checkbox" formControlName="terms">
+      <span>I Agree to the Terms and Conditions</span>
+    </label>
+    <span class="error-message" [hidden]="terms.valid || terms.pristine">{{ Errors.RequiredField }}</span>
+  </div>
+  <!-- Submit button -->
+  <button type="submit" [disabled]="isInvalidForm">Submit</button>
+</form>
+<p *ngIf="submitted" class="success-message">The form was successfully submitted!</p>

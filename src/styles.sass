@@ -1,0 +1,137 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use "sass:map"
+
+$radius: ("s": .25rem)
+$colors: ("white": #f8f8f8, "black": #222222, "dark-grey": #181818, "purple": #401ebb, "light-blue": #89adff, "red": #ec8f84, "green": #52a432)
+$transitions: ("main": .3s ease-in-out)
+
+body
+  font-family: Arial, sans-serif
+  color: map.get($colors, "white")
+  background-color: map.get($colors, "dark-grey")
+
+h1
+  margin-block: 0 .5rem
+
+p
+  margin: 0
+
+button
+  width: 100%
+  cursor: pointer
+  padding: .75rem 1.5rem
+  background-color: map.get($colors, "purple")
+  color: whitesmoke
+  text-transform: uppercase
+  border: none
+  border-radius: map.get($radius, "s")
+  transition: map.get($transitions, "main")
+
+  &:hover
+    background-color: darken(map.get($colors, "purple"), 20%)
+
+  &:active
+    background-color: lighten(map.get($colors, "purple"), 10%)
+
+  &:disabled
+    cursor: not-allowed
+    opacity: .5
+
+    &:hover,
+    &:active
+      background-color: map.get($colors, "purple")
+
+input,
+textarea
+  padding: 0
+  outline-color: map.get($colors, "light-blue")
+
+  &:hover,
+  &:focus
+    border-radius: map.get($radius, "s")
+    outline: 2px solid map.get($colors, "light-blue")
+
+  &:focus
+    transition: map.get($transitions, "main")
+    outline-width: 4px
+
+.title,
+.subtitle
+  color: map.get($colors, "white")
+
+.form
+  color: map.get($colors, "black")
+  margin-top: 4rem
+  padding: 2rem
+  border: 1px solid lightgray
+  border-radius: map.get($radius, "s")
+  background-color: whitesmoke
+  box-shadow: 0 .125rem .5rem -.125rem whitesmoke
+
+main
+  max-width: 38rem
+  margin: 0 auto
+  padding: 4rem 1rem
+
+.custom-input
+  display: grid
+  grid-template-rows: repeat(2, auto)
+  row-gap: .75rem
+  margin-block: 1rem
+
+  & > label
+    display: grid
+    grid-template-rows: repeat(2, auto)
+    box-sizing: border-box
+
+    & > input
+      box-sizing: border-box
+      border: none
+      border-bottom: 1px solid lightgray
+      background-color: transparent
+      padding: .5rem
+
+    & > span
+      padding-bottom: .25rem
+
+  & > .checkbox
+    grid-template-columns: auto 1fr
+    gap: 0 .5rem
+    align-items: center
+    cursor: pointer
+
+    & > input
+      width: 1.125rem
+      height: 1.125rem
+
+    & > span
+      padding-bottom: 0
+
+  & > textarea
+    min-height: 6rem
+    padding: 1rem
+    box-sizing: border-box
+    resize: none
+    background-color: transparent
+    border: 1px solid lightgray
+    font-family: inherit
+    border-radius: map.get($radius, "s")
+
+    &::placeholder
+      font-family: inherit
+
+.error-message
+  text-align: end
+  font-size: .8rem
+  border-radius: map.get($radius, "s")
+  color: map.get($colors, "red")
+
+.success-message
+  margin-block: 2rem
+  text-align: center
+  padding: .75rem
+  box-sizing: border-box
+  border-radius: map.get($radius, "s")
+  background-color: map.get($colors, "green")
+  border: 1px solid darken(map.get($colors, "green"), 20%)
